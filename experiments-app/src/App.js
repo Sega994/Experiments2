@@ -127,16 +127,22 @@ function App() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
               <div>
                 <h3 style={{ margin: '0 0 5px 0' }}>{exp.name}</h3>
-                <p style={{ margin: 0 }}>
-                  Статус:{' '}
-                  <select
-                    value={exp.status}
-                    onChange={(e) => updateStatus(exp.id, e.target.value)}
-                    style={{ marginLeft: '5px', padding: '3px' }}
-                  >
-                    {statuses.map(s => <option key={s}>{s}</option>)}
-                  </select>
-                </p>
+               <p style={{ margin: 0 }}>
+  Статус:{' '}
+  <select
+    value={exp.status}
+    onChange={(e) => updateStatus(exp.id, e.target.value)}
+    style={{
+      marginLeft: '5px',
+      padding: '3px',
+      backgroundColor: 
+        exp.status === 'Завершён' ? '#d4edda' :
+        exp.status === 'В процессе' ? '#fff3cd' : '#f8d7da'
+    }}
+  >
+    {statuses.map(s => <option key={s}>{s}</option>)}
+  </select>
+</p>
               </div>
               <button
                 onClick={() => deleteExperiment(exp.id)}
