@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   // Загружаем данные из localStorage при запуске
-  const [experiments, setExperiments] = useState(() => {
-    const saved = localStorage.getItem('experiments');
-    return saved ? JSON.parse(saved) : [];
-  });
+ const [experiments, setExperiments] = useState(() => {
+  const saved = localStorage.getItem('experiments');
+  if (saved) return JSON.parse(saved);
+  // Начальные примеры
+  return [
+    { id: 1, name: 'Испытание двигателя', status: 'План' },
+    { id: 2, name: 'Тест химической реакции', status: 'В процессе' },
+    { id: 3, name: 'Анализ образцов', status: 'Завершён' },
+  ];
+});
 
   const [statusFilter, setStatusFilter] = useState('Все');
   const [newName, setNewName] = useState('');
